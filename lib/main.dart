@@ -42,69 +42,53 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: ListView(
           children: [
-            ListTile(
-              leading: const Icon(Icons.workspaces),
-              title: const Text("Animation 1"),
-              onTap: () => screenTransition(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspaces),
-              title: const Text("Animation 2"),
-              onTap: () => screenTransition(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspaces),
-              title: const Text("Animation 3"),
-              onTap: () => screenTransition(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspaces),
-              title: const Text("Animation 4"),
-              onTap: () => screenTransition(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspaces),
-              title: const Text("Animation 6"),
-              onTap: () => screenTransition(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspaces),
-              title: const Text("Animation 7"),
-              onTap: () => screenTransition(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspaces),
-              title: const Text("Animation 8"),
-              onTap: () => screenTransition(context),
-            ),
+            titledTile("Animation 1", "desc 1"),
+            titledTile("Animation 2", "desc 2"),
+            titledTile("Animation 3", "desc 3"),
+            titledTile("Animation 4", "desc 4"),
+            titledTile("Animation 5", "desc 5"),
+            titledTile("Animation 6", "desc 6"),
+            titledTile("Animation 7", "desc 7"),
+            titledTile("Animation 8", "desc 8"),
           ],
         ),
       ),
     );
   }
-}
 
-Future<dynamic> screenTransition(BuildContext ctx) {
-  return Navigator.of(ctx).push(
-    PageRouteBuilder(
-      pageBuilder: (ctx, animation, anotherAnimation) {
-        return AnimationRoute(); //Should take different things based on which screen it is
-      },
-      barrierColor: Colors.blue,
-      transitionDuration: Duration(milliseconds: 1000),
-      transitionsBuilder: (ctx, animation, anotherAnimation, child) {
-        animation = CurvedAnimation(curve: Curves.easeOut, parent: animation);
-        return RotationTransition(
-          turns: animation,
-          child: child,
-        );
-        // return SlideTransition(
-        //   position:
-        //       Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
-        //           .animate(animation),
-        //   child: child,
-        // );
-      },
-    ),
-  );
+  ListTile titledTile(String title, String desc) {
+    return ListTile(
+      leading: const Icon(Icons.workspaces),
+      title: Text(title),
+      onTap: () => screenTransition(title, desc),
+    );
+  }
+
+  Future<dynamic> screenTransition(String title, String desc) {
+    return Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, anotherAnimation) {
+          return AnimationRoute(
+            title: title,
+            description: desc,
+          ); //Should take different things based on which screen it is
+        },
+        barrierColor: Colors.blue,
+        transitionDuration: Duration(milliseconds: 1000),
+        transitionsBuilder: (context, animation, anotherAnimation, child) {
+          animation = CurvedAnimation(curve: Curves.easeOut, parent: animation);
+          return RotationTransition(
+            turns: animation,
+            child: child,
+          );
+          // return SlideTransition(
+          //   position:
+          //       Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
+          //           .animate(animation),
+          //   child: child,
+          // );
+        },
+      ),
+    );
+  }
 }

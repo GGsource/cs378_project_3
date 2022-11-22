@@ -1,24 +1,43 @@
 import 'package:flutter/material.dart';
 
 class AnimationRoute extends StatelessWidget {
-  const AnimationRoute({Key? key}) : super(key: key);
+  final String title;
+  final String description;
+  const AnimationRoute(
+      {Key? key, required this.title, required this.description})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Animation Route"),
+        title: Text(title),
       ),
       body: Center(
-        child: Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
-                child: Row(
-              children: const [
-                Text("Description"),
-                Icon(Icons.abc),
-              ],
-            ))
+              flex: 1,
+              child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  alignment: Alignment.center,
+                  color: Colors.amber,
+                  child: Text(description)),
+            ),
+            Flexible(
+              flex: 2,
+              child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  alignment: Alignment.center,
+                  color: Colors.amberAccent,
+                  child: const Icon(
+                    Icons.abc,
+                    size: 120,
+                  )),
+            ),
           ],
         ),
       ),
