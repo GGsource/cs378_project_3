@@ -2,14 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class ExplicitAnimationB extends StatefulWidget {
-  const ExplicitAnimationB({super.key});
+class ExplicitAnimationC extends StatefulWidget {
+  const ExplicitAnimationC({super.key});
 
   @override
-  State<ExplicitAnimationB> createState() => _ExplicitAnimationBState();
+  State<ExplicitAnimationC> createState() => _ExplicitAnimationCState();
 }
 
-class _ExplicitAnimationBState extends State<ExplicitAnimationB>
+class _ExplicitAnimationCState extends State<ExplicitAnimationC>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _sizeAnimation;
@@ -19,7 +19,7 @@ class _ExplicitAnimationBState extends State<ExplicitAnimationB>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 4000),
+      duration: Duration(milliseconds: 4000),
     );
 
     _controller.addListener(() {

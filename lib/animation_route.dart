@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cs378_project_3/explicit_animation_a.dart';
 import 'package:cs378_project_3/explicit_animation_b.dart';
+import 'package:cs378_project_3/explicit_animation_c.dart';
 import 'package:cs378_project_3/implicit_animation_grow.dart';
 import 'package:cs378_project_3/implicit_animation_sniff.dart';
 import 'package:cs378_project_3/implicit_animation_cham.dart';
@@ -130,11 +131,11 @@ class AnimationRoute extends StatelessWidget {
           imagePath: "images/heart.png",
         );
       case 7:
-        return ExplicitAnimationB();
+        return const ExplicitAnimationB();
       case 8:
-        return ExplicitAnimationB();
+        return ExplicitAnimationC();
       default:
-        return FlutterLogo();
+        return FlutterLogo(); //This should never be reachable
     }
   }
 }
