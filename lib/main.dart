@@ -55,8 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ndx: 2,
             ),
             titledTile(
-              title: "Title 3",
-              desc: "Implicit description goes here...",
+              title: "The Suspicious Sniffer",
+              desc:
+                  "This implicit animation presents a dog that is trying to make up its mind about you. Tap its nose repeatedly to be sniffed.",
               ndx: 3,
             ),
             titledTile(
@@ -124,9 +125,10 @@ class _MyHomePageState extends State<MyHomePage> {
               return RotationTransition(turns: anim, child: child);
             case 2:
               return SlideTransition(
-                  position:
-                      Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
-                          .animate(anim),
+                  position: Tween(
+                          begin: const Offset(0.0, 1.0),
+                          end: const Offset(0.0, 0.0))
+                      .animate(anim),
                   child: child);
             case 3:
               return ScaleTransition(scale: anim, child: child);
@@ -139,9 +141,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: child);
             case 6:
               return SlideTransition(
-                  position:
-                      Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
-                          .animate(altAnimation),
+                  position: Tween(
+                          begin: const Offset(0.0, 1.0),
+                          end: const Offset(0.0, 0.0))
+                      .animate(altAnimation),
                   child: child);
             case 7:
               return ScaleTransition(scale: altAnimation, child: child);

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cs378_project_3/explicit_animation_a.dart';
+import 'package:cs378_project_3/implicit_animation_sniff.dart';
 import 'package:flutter/material.dart';
 
 class AnimationRoute extends StatelessWidget {
@@ -86,16 +87,24 @@ class AnimationRoute extends StatelessWidget {
                   height: 300,
                 ));
           },
+          curve: Curves.decelerate,
         );
       case 3:
-        return Icon(
-          Icons.three_k_outlined,
-          size: 300,
-        );
+        return AnimatedSniff();
       case 5:
-        return Icon(
-          Icons.five_k_outlined,
-          size: 300,
+        return TweenAnimationBuilder(
+          duration: const Duration(seconds: 3),
+          tween: Tween<double>(begin: 1, end: 4),
+          builder: (_, double scale, __) {
+            // Animation value should be same type as Tween typ
+            return Transform.scale(
+                scale: scale,
+                child: Image.asset(
+                  "./images/sniffer.jpg",
+                  height: 200,
+                ));
+          },
+          curve: Curves.bounceInOut,
         );
       case 7:
         return Icon(
