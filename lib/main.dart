@@ -67,8 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ndx: 4,
             ),
             titledTile(
-              title: "Title 5",
-              desc: "Implicit description goes here...",
+              title: "Big Balloon",
+              desc:
+                  "This implicit animation presents a balloon waiting to be filled. Tap the balloon to make it bigger!",
               ndx: 5,
             ),
             titledTile(

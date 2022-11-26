@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:cs378_project_3/explicit_animation_a.dart';
+import 'package:cs378_project_3/implicit_animation_grow.dart';
 import 'package:cs378_project_3/implicit_animation_sniff.dart';
-import 'package:cs378_project_3/implicit_animation_vamp.dart';
+import 'package:cs378_project_3/implicit_animation_cham.dart';
 import 'package:flutter/material.dart';
 
 class AnimationRoute extends StatelessWidget {
@@ -110,10 +111,7 @@ class AnimationRoute extends StatelessWidget {
       case 4:
         return const AnimatedCham();
       case 5:
-        return const Icon(
-          Icons.seven_k_outlined,
-          size: 300,
-        );
+        return const AnimatedGrow();
       default:
         return const Icon(
           Icons.ten_k_outlined,
