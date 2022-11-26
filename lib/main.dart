@@ -61,8 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ndx: 3,
             ),
             titledTile(
-              title: "Title 4",
-              desc: "Implicit description goes here...",
+              title: "Shy Chameleon",
+              desc:
+                  "This implicit animation shows a chameleon who's a bit shy. Click him to watch him disappear. Click again to reappear, or interrupt mid-fade",
               ndx: 4,
             ),
             titledTile(

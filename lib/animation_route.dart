@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cs378_project_3/explicit_animation_a.dart';
 import 'package:cs378_project_3/implicit_animation_sniff.dart';
+import 'package:cs378_project_3/implicit_animation_vamp.dart';
 import 'package:flutter/material.dart';
 
 class AnimationRoute extends StatelessWidget {
@@ -92,7 +93,6 @@ class AnimationRoute extends StatelessWidget {
       case 2:
         return const AnimatedSniff();
       case 3:
-        // TODO: Make this unique, sniffer already above
         return TweenAnimationBuilder(
           duration: const Duration(seconds: 3),
           tween: Tween<double>(begin: 0, end: 130),
@@ -108,10 +108,7 @@ class AnimationRoute extends StatelessWidget {
           curve: Curves.easeInOutBack,
         );
       case 4:
-        return const Icon(
-          Icons.seven_k_outlined,
-          size: 300,
-        );
+        return const AnimatedCham();
       case 5:
         return const Icon(
           Icons.seven_k_outlined,

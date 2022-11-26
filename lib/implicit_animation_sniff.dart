@@ -18,11 +18,11 @@ class _AnimatedSniffState extends State<AnimatedSniff> {
         });
       }),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOutBack,
         onEnd: (() {
           setState(() {
-            isEnded = true;
+            isEnded = !isEnded;
           });
         }),
         width: isEnded ? 400 : 300,
