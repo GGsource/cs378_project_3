@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -67,31 +67,32 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<dynamic> screenTransition(String desc, int ndx) {
     return Navigator.of(context).push(
       PageRouteBuilder(
-        pageBuilder: (context, animation, anotherAnimation) {
+        pageBuilder: (context, anim, anim2) {
           return AnimationRoute(
             title: "Animation $ndx",
             description: desc,
+            index: ndx,
           ); //Should take different things based on which screen it is
         },
         barrierColor: Colors.amber,
         transitionDuration: const Duration(milliseconds: 1000),
-        transitionsBuilder: (context, animation, anotherAnimation, child) {
+        transitionsBuilder: (context, anim, anim2, child) {
           var altAnimation = CurvedAnimation(
-              parent: animation, curve: Curves.easeInOutCubicEmphasized);
-          animation = CurvedAnimation(curve: Curves.easeOut, parent: animation);
+              parent: anim, curve: Curves.easeInOutCubicEmphasized);
+          anim = CurvedAnimation(curve: Curves.decelerate, parent: anim);
           switch (ndx) {
             case 1:
-              return RotationTransition(turns: animation, child: child);
+              return RotationTransition(turns: anim, child: child);
             case 2:
               return SlideTransition(
                   position:
                       Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
-                          .animate(animation),
+                          .animate(anim),
                   child: child);
             case 3:
-              return ScaleTransition(scale: animation, child: child);
+              return ScaleTransition(scale: anim, child: child);
             case 4:
-              return FadeTransition(opacity: animation, child: child);
+              return FadeTransition(opacity: anim, child: child);
             case 5:
               return RotationTransition(
                   turns: altAnimation,
@@ -108,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
             case 8:
               return FadeTransition(opacity: altAnimation, child: child);
             default:
-              return ScaleTransition(scale: animation, child: child);
+              return ScaleTransition(scale: anim, child: child);
           }
         },
       ),

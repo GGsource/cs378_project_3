@@ -1,10 +1,15 @@
+import 'package:cs378_project_3/animation_1.dart';
 import 'package:flutter/material.dart';
 
 class AnimationRoute extends StatelessWidget {
   final String title;
   final String description;
+  final int index;
   const AnimationRoute(
-      {Key? key, required this.title, required this.description})
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.index})
       : super(key: key);
 
   @override
@@ -27,12 +32,19 @@ class AnimationRoute extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                  alignment: Alignment.center,
-                  color: Colors.amberAccent,
-                  child: const Icon(
-                    Icons.abc,
-                    size: 120,
-                  )),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.red, Colors.amberAccent],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    AnimationOne(index: index),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
