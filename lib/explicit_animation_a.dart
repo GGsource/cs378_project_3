@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
-class AnimationOne extends StatefulWidget {
+class ExplicitAnimationA extends StatefulWidget {
   final int index;
-  const AnimationOne({super.key, required this.index});
+  final int duration;
+  final String imagePath;
+  const ExplicitAnimationA({
+    super.key,
+    required this.index,
+    required this.duration,
+    required this.imagePath,
+  });
 
   @override
-  State<AnimationOne> createState() => _AnimationOneState();
+  State<ExplicitAnimationA> createState() => _ExplicitAnimationAState();
 }
 
-class _AnimationOneState extends State<AnimationOne>
+class _ExplicitAnimationAState extends State<ExplicitAnimationA>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _sizeAnimation;
@@ -18,14 +25,14 @@ class _AnimationOneState extends State<AnimationOne>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 3000),
+      duration: Duration(milliseconds: widget.duration),
     );
 
     _controller.addListener(() {
       setState(() {});
     });
 
-    _sizeAnimation = Tween<double>(begin: 24, end: 72).animate(_controller);
+    _sizeAnimation = Tween<double>(begin: 50, end: 270).animate(_controller);
   }
 
   @override
@@ -37,9 +44,7 @@ class _AnimationOneState extends State<AnimationOne>
           height: _sizeAnimation.value,
           width: _sizeAnimation.value,
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(_sizeAnimation.value / 2),
-          ),
+              image: DecorationImage(image: AssetImage(widget.imagePath))),
         ),
         Wrap(
           spacing: 30,
@@ -49,20 +54,22 @@ class _AnimationOneState extends State<AnimationOne>
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
                 onPressed: index % 2 == 0 ? playPauseAnim : null,
                 onLongPress: index % 2 == 0 ? playPauseAnim : null,
-                child: Text("Play/Pause")),
+                child: const Text("Play/Pause")),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
                 onPressed: index % 2 == 0 ? _reverse : null,
                 onLongPress: index % 2 == 0 ? _reverse : null,
-                child: Text("Rewind")),
+                child: const Text("Rewind")),
           ],
         ),
       ],
     );
   }
 
+  bool isForward = true;
+
   void playPauseAnim() {
-    if (_isPlaying()) {
+    if (_controller.isAnimating) {
       _pause();
     } else {
       _play();
@@ -70,10 +77,13 @@ class _AnimationOneState extends State<AnimationOne>
   }
 
   void _play() {
-    _controller.forward();
+    _controller.status == AnimationStatus.dismissed || isForward
+        ? _controller.forward()
+        : _controller.reverse();
   }
 
   void _pause() {
+    isForward = _controller.status == AnimationStatus.forward ? true : false;
     _controller.stop();
   }
 
@@ -81,9 +91,5 @@ class _AnimationOneState extends State<AnimationOne>
     if (_controller.status == AnimationStatus.completed) {
       _controller.reverse();
     }
-  }
-
-  bool _isPlaying() {
-    return _controller.isAnimating;
   }
 }

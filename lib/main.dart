@@ -42,34 +42,73 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: ListView(
           children: [
-            titledTile("desc 1", 1),
-            titledTile("desc 2", 2),
-            titledTile("desc 3", 3),
-            titledTile("desc 4", 4),
-            titledTile("desc 5", 5),
-            titledTile("desc 6", 6),
-            titledTile("desc 7", 7),
-            titledTile("desc 8", 8),
+            titledTile(
+              title: "Sonic Spins Freakin Fast",
+              desc:
+                  "In this implicit animation Sonic The Hedgehog spins 144000 degrees in just 15 seconds. This of course is just a mere fraction of what he is truly capable of.",
+              ndx: 1,
+            ),
+            titledTile(
+              title: " World's Slowest Heart Pump.",
+              desc:
+                  "This animation takes a heart and gradually grows it in size. The user can pause this at any time, and once the heartbeat is complete, the user can contract the heart. Pausing and resuming functions correctly in both directions!",
+              ndx: 2,
+            ),
+            titledTile(
+              title: "Title 3",
+              desc: "Implicit description goes here...",
+              ndx: 3,
+            ),
+            titledTile(
+              title: "Title 4",
+              desc: "Explicit description goes here...",
+              ndx: 4,
+            ),
+            titledTile(
+              title: "Title 5",
+              desc: "Implicit description goes here...",
+              ndx: 5,
+            ),
+            titledTile(
+              title: "Title 6",
+              desc: "Explicit description goes here...",
+              ndx: 6,
+            ),
+            titledTile(
+              title: "Title 7",
+              desc: "Implicit description goes here...",
+              ndx: 7,
+            ),
+            titledTile(
+              title: "Title 8",
+              desc: "Explicit description goes here...",
+              ndx: 8,
+            ),
           ],
         ),
       ),
     );
   }
 
-  ListTile titledTile(String desc, int ndx) {
+  ListTile titledTile(
+      {required String title, required String desc, required int ndx}) {
+    String sceneTitle = ndx % 2 == 0 ? "Explicit" : "Implicit";
+    sceneTitle = "Animation $ndx: $sceneTitle";
     return ListTile(
       leading: const Icon(Icons.workspaces),
-      title: Text("Animation $ndx"),
-      onTap: () => screenTransition(desc, ndx),
+      title: Text(sceneTitle),
+      onTap: () => screenTransition(sceneTitle, title, desc, ndx),
     );
   }
 
-  Future<dynamic> screenTransition(String desc, int ndx) {
+  Future<dynamic> screenTransition(
+      String sceneTitle, String animationTitle, String desc, int ndx) {
     return Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (context, anim, anim2) {
           return AnimationRoute(
-            title: "Animation $ndx",
+            screenTitle: sceneTitle,
+            animationTitle: animationTitle,
             description: desc,
             index: ndx,
           ); //Should take different things based on which screen it is
