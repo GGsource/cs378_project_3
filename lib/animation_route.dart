@@ -36,18 +36,33 @@ class AnimationRoute extends StatelessWidget {
               child: Container(
                   alignment: Alignment.center,
                   color: Colors.amber,
-                  child: Column(
-                    children: [
-                      Text(
-                        animationTitle,
-                        style: const TextStyle(fontSize: 30),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        description,
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Wrap(
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      runSpacing: 5,
+                      children: [
+                        Text(
+                          animationTitle,
+                          style: const TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                        const Divider(
+                          endIndent: 40,
+                          indent: 40,
+                          color: Colors.black12,
+                          thickness: 2,
+                          height: 2,
+                        ),
+                        Text(
+                          description,
+                          style: const TextStyle(fontSize: 16),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   )),
             ),
             Expanded(
@@ -133,9 +148,9 @@ class AnimationRoute extends StatelessWidget {
       case 7:
         return const ExplicitAnimationB();
       case 8:
-        return ExplicitAnimationC();
+        return const ExplicitAnimationC();
       default:
-        return FlutterLogo(); //This should never be reachable
+        return const FlutterLogo(); //This should never be reachable
     }
   }
 }

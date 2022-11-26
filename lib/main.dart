@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
             titledTile(
               title: "Big Balloon",
               desc:
-                  "This implicit animation presents a balloon waiting to be filled. Tap the balloon to make it bigger!",
+                  "This implicit animation presents a balloon waiting to be filled. Tap the balloon repeatedly to make it bigger!",
               ndx: 5,
             ),
             titledTile(
@@ -85,8 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ndx: 7,
             ),
             titledTile(
-              title: "Title 8",
-              desc: "Explicit description goes here...",
+              title: "Soccer Scoring",
+              desc:
+                  "This explicit animation takes a soccer ball and kicks it into the goal post. It can be paused at any time, including during rewind, and resumed.",
               ndx: 8,
             ),
           ],

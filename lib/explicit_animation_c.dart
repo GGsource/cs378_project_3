@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class ExplicitAnimationC extends StatefulWidget {
@@ -12,45 +10,49 @@ class ExplicitAnimationC extends StatefulWidget {
 class _ExplicitAnimationCState extends State<ExplicitAnimationC>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _sizeAnimation;
+  late Animation<Offset> _sizeAnimation;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 4000),
+      duration: const Duration(milliseconds: 500),
     );
 
     _controller.addListener(() {
       setState(() {});
     });
 
-    _sizeAnimation = Tween<double>(begin: 0, end: 2 * pi).animate(_controller);
+    _sizeAnimation =
+        Tween<Offset>(begin: const Offset(0, 0), end: const Offset(.75, 0))
+            .animate(_controller);
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Stack(
+        Row(
           children: [
+            Expanded(
+              child: SlideTransition(
+                position: _sizeAnimation,
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("images/soccerball.png"))),
+                ),
+              ),
+            ),
             Container(
               height: 200,
               width: 200,
               decoration: const BoxDecoration(
-                  image:
-                      DecorationImage(image: AssetImage("images/clock.png"))),
-            ),
-            RotationTransition(
-              turns: _sizeAnimation,
-              child: Container(
-                height: 200,
-                width: 200,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("images/clock_hand.png"))),
-              ),
+                  image: DecorationImage(
+                      image: AssetImage("images/goalpost.png"))),
             ),
           ],
         ),
