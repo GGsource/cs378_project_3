@@ -55,8 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ndx: 2,
             ),
             titledTile(
-              title: "Title 3",
-              desc: "Implicit description goes here...",
+              title: "Ton Drop",
+              desc:
+                  "This implicit animation shows a ton dropping from a height, simulating gravity as it speeds up before hitting the ground and bouncing slightly.",
               ndx: 3,
             ),
             titledTile(

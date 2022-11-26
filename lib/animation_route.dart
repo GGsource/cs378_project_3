@@ -92,19 +92,20 @@ class AnimationRoute extends StatelessWidget {
       case 2:
         return const AnimatedSniff();
       case 3:
+        // TODO: Make this unique, sniffer already above
         return TweenAnimationBuilder(
           duration: const Duration(seconds: 3),
-          tween: Tween<double>(begin: 1, end: 4),
-          builder: (_, double scale, __) {
+          tween: Tween<double>(begin: 0, end: 130),
+          builder: (_, double offset, __) {
             // Animation value should be same type as Tween typ
-            return Transform.scale(
-                scale: scale,
+            return Transform.translate(
+                offset: Offset(0, offset),
                 child: Image.asset(
-                  "./images/sniffer.jpg",
+                  "./images/ton.png",
                   height: 200,
                 ));
           },
-          curve: Curves.bounceInOut,
+          curve: Curves.easeInOutBack,
         );
       case 4:
         return const Icon(
