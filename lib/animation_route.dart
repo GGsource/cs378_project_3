@@ -17,20 +17,16 @@ class AnimationRoute extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Flexible(
+            Expanded(
               flex: 1,
               child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
                   alignment: Alignment.center,
                   color: Colors.amber,
                   child: Text(description)),
             ),
-            Flexible(
+            Expanded(
               flex: 2,
               child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
                   alignment: Alignment.center,
                   color: Colors.amberAccent,
                   child: const Icon(

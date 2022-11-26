@@ -42,51 +42,74 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: ListView(
           children: [
-            titledTile("Animation 1", "desc 1"),
-            titledTile("Animation 2", "desc 2"),
-            titledTile("Animation 3", "desc 3"),
-            titledTile("Animation 4", "desc 4"),
-            titledTile("Animation 5", "desc 5"),
-            titledTile("Animation 6", "desc 6"),
-            titledTile("Animation 7", "desc 7"),
-            titledTile("Animation 8", "desc 8"),
+            titledTile("desc 1", 1),
+            titledTile("desc 2", 2),
+            titledTile("desc 3", 3),
+            titledTile("desc 4", 4),
+            titledTile("desc 5", 5),
+            titledTile("desc 6", 6),
+            titledTile("desc 7", 7),
+            titledTile("desc 8", 8),
           ],
         ),
       ),
     );
   }
 
-  ListTile titledTile(String title, String desc) {
+  ListTile titledTile(String desc, int ndx) {
     return ListTile(
       leading: const Icon(Icons.workspaces),
-      title: Text(title),
-      onTap: () => screenTransition(title, desc),
+      title: Text("Animation $ndx"),
+      onTap: () => screenTransition(desc, ndx),
     );
   }
 
-  Future<dynamic> screenTransition(String title, String desc) {
+  Future<dynamic> screenTransition(String desc, int ndx) {
     return Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (context, animation, anotherAnimation) {
           return AnimationRoute(
-            title: title,
+            title: "Animation $ndx",
             description: desc,
           ); //Should take different things based on which screen it is
         },
-        barrierColor: Colors.blue,
-        transitionDuration: Duration(milliseconds: 1000),
+        barrierColor: Colors.amber,
+        transitionDuration: const Duration(milliseconds: 1000),
         transitionsBuilder: (context, animation, anotherAnimation, child) {
+          var altAnimation = CurvedAnimation(
+              parent: animation, curve: Curves.easeInOutCubicEmphasized);
           animation = CurvedAnimation(curve: Curves.easeOut, parent: animation);
-          return RotationTransition(
-            turns: animation,
-            child: child,
-          );
-          // return SlideTransition(
-          //   position:
-          //       Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
-          //           .animate(animation),
-          //   child: child,
-          // );
+          switch (ndx) {
+            case 1:
+              return RotationTransition(turns: animation, child: child);
+            case 2:
+              return SlideTransition(
+                  position:
+                      Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
+                          .animate(animation),
+                  child: child);
+            case 3:
+              return ScaleTransition(scale: animation, child: child);
+            case 4:
+              return FadeTransition(opacity: animation, child: child);
+            case 5:
+              return RotationTransition(
+                  turns: altAnimation,
+                  alignment: Alignment.topLeft,
+                  child: child);
+            case 6:
+              return SlideTransition(
+                  position:
+                      Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
+                          .animate(altAnimation),
+                  child: child);
+            case 7:
+              return ScaleTransition(scale: altAnimation, child: child);
+            case 8:
+              return FadeTransition(opacity: altAnimation, child: child);
+            default:
+              return ScaleTransition(scale: animation, child: child);
+          }
         },
       ),
     );
