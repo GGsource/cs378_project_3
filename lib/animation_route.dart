@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cs378_project_3/explicit_animation_a.dart';
+import 'package:cs378_project_3/explicit_animation_b.dart';
 import 'package:cs378_project_3/implicit_animation_grow.dart';
 import 'package:cs378_project_3/implicit_animation_sniff.dart';
 import 'package:cs378_project_3/implicit_animation_cham.dart';
@@ -121,10 +122,19 @@ class AnimationRoute extends StatelessWidget {
   }
 
   Widget fetchExplicitAnimation() {
-    return ExplicitAnimationA(
-      index: index,
-      duration: 3000,
-      imagePath: "images/heart.png",
-    );
+    switch (index) {
+      case 6:
+        return ExplicitAnimationA(
+          index: index,
+          duration: 3000,
+          imagePath: "images/heart.png",
+        );
+      case 7:
+        return ExplicitAnimationB();
+      case 8:
+        return ExplicitAnimationB();
+      default:
+        return FlutterLogo();
+    }
   }
 }

@@ -75,12 +75,13 @@ class _MyHomePageState extends State<MyHomePage> {
             titledTile(
               title: " World's Slowest Heart Pump.",
               desc:
-                  "This animation takes a heart and gradually grows it in size. The user can pause this at any time, and once the heartbeat is complete, the user can contract the heart. Pausing and resuming functions correctly in both directions!",
+                  "This explicit animation takes a heart and gradually grows it in size. The user can pause this at any time, and once the heartbeat is complete, the user can contract the heart. Pausing and resuming functions correctly in both directions!",
               ndx: 6,
             ),
             titledTile(
-              title: "Title 7",
-              desc: "Explicit description goes here...",
+              title: "Time Dialation",
+              desc:
+                  "This explicit animation takes a clock and spins its' hands multiple times. It can be paused at any time, including during rewind, and resumed, keeping its direction in tact.",
               ndx: 7,
             ),
             titledTile(
