@@ -58,7 +58,7 @@ class AnimationRoute extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    index % 2 != 0
+                    index < 6
                         ? fetchImplicitAnimation()
                         : fetchExplicitAnimation(),
                   ],
@@ -89,9 +89,9 @@ class AnimationRoute extends StatelessWidget {
           },
           curve: Curves.decelerate,
         );
+      case 2:
+        return const AnimatedSniff();
       case 3:
-        return AnimatedSniff();
-      case 5:
         return TweenAnimationBuilder(
           duration: const Duration(seconds: 3),
           tween: Tween<double>(begin: 1, end: 4),
@@ -106,13 +106,18 @@ class AnimationRoute extends StatelessWidget {
           },
           curve: Curves.bounceInOut,
         );
-      case 7:
-        return Icon(
+      case 4:
+        return const Icon(
+          Icons.seven_k_outlined,
+          size: 300,
+        );
+      case 5:
+        return const Icon(
           Icons.seven_k_outlined,
           size: 300,
         );
       default:
-        return Icon(
+        return const Icon(
           Icons.ten_k_outlined,
           size: 300,
         );

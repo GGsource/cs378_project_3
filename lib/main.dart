@@ -49,20 +49,19 @@ class _MyHomePageState extends State<MyHomePage> {
               ndx: 1,
             ),
             titledTile(
-              title: " World's Slowest Heart Pump.",
-              desc:
-                  "This animation takes a heart and gradually grows it in size. The user can pause this at any time, and once the heartbeat is complete, the user can contract the heart. Pausing and resuming functions correctly in both directions!",
-              ndx: 2,
-            ),
-            titledTile(
               title: "The Suspicious Sniffer",
               desc:
                   "This implicit animation presents a dog that is trying to make up its mind about you. Tap its nose repeatedly to be sniffed.",
+              ndx: 2,
+            ),
+            titledTile(
+              title: "Title 3",
+              desc: "Implicit description goes here...",
               ndx: 3,
             ),
             titledTile(
               title: "Title 4",
-              desc: "Explicit description goes here...",
+              desc: "Implicit description goes here...",
               ndx: 4,
             ),
             titledTile(
@@ -71,13 +70,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ndx: 5,
             ),
             titledTile(
-              title: "Title 6",
-              desc: "Explicit description goes here...",
+              title: " World's Slowest Heart Pump.",
+              desc:
+                  "This animation takes a heart and gradually grows it in size. The user can pause this at any time, and once the heartbeat is complete, the user can contract the heart. Pausing and resuming functions correctly in both directions!",
               ndx: 6,
             ),
             titledTile(
               title: "Title 7",
-              desc: "Implicit description goes here...",
+              desc: "Explicit description goes here...",
               ndx: 7,
             ),
             titledTile(
@@ -91,14 +91,27 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  ListTile titledTile(
+  Widget titledTile(
       {required String title, required String desc, required int ndx}) {
-    String sceneTitle = ndx % 2 == 0 ? "Explicit" : "Implicit";
+    String sceneTitle = ndx >= 6 ? "Explicit" : "Implicit";
     sceneTitle = "Animation $ndx: $sceneTitle";
-    return ListTile(
-      leading: const Icon(Icons.workspaces),
-      title: Text(sceneTitle),
-      onTap: () => screenTransition(sceneTitle, title, desc, ndx),
+    return Column(
+      children: [
+        ListTile(
+          leading: const Icon(Icons.workspaces),
+          title: Text(
+            sceneTitle,
+            style: const TextStyle(fontSize: 35),
+          ),
+          onTap: () => screenTransition(sceneTitle, title, desc, ndx),
+        ),
+        const Divider(
+          endIndent: 40,
+          indent: 40,
+          color: Colors.black12,
+          thickness: 3,
+        )
+      ],
     );
   }
 

@@ -52,13 +52,13 @@ class _ExplicitAnimationAState extends State<ExplicitAnimationA>
           children: [
             ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-                onPressed: index % 2 == 0 ? playPauseAnim : null,
-                onLongPress: index % 2 == 0 ? playPauseAnim : null,
+                onPressed: index >= 6 ? playPauseAnim : null,
+                onLongPress: index >= 6 ? playPauseAnim : null,
                 child: const Text("Play/Pause")),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-                onPressed: index % 2 == 0 ? _reverse : null,
-                onLongPress: index % 2 == 0 ? _reverse : null,
+                onPressed: index >= 6 ? _reverse : null,
+                onLongPress: index >= 6 ? _reverse : null,
                 child: const Text("Rewind")),
           ],
         ),
