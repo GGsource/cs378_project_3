@@ -10,7 +10,7 @@ class ExplicitAnimationC extends StatefulWidget {
 class _ExplicitAnimationCState extends State<ExplicitAnimationC>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<Offset> _sizeAnimation;
+  late Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _ExplicitAnimationCState extends State<ExplicitAnimationC>
       setState(() {});
     });
 
-    _sizeAnimation =
+    _slideAnimation =
         Tween<Offset>(begin: const Offset(0, 0), end: const Offset(.75, 0))
             .animate(_controller);
   }
@@ -37,7 +37,7 @@ class _ExplicitAnimationCState extends State<ExplicitAnimationC>
           children: [
             Expanded(
               child: SlideTransition(
-                position: _sizeAnimation,
+                position: _slideAnimation,
                 child: Container(
                   height: 50,
                   width: 50,

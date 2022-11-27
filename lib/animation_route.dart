@@ -35,7 +35,7 @@ class AnimationRoute extends StatelessWidget {
               flex: 1,
               child: Container(
                   alignment: Alignment.center,
-                  color: Colors.amber,
+                  color: Colors.amberAccent,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Wrap(

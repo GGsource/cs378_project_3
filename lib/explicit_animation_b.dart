@@ -12,7 +12,7 @@ class ExplicitAnimationB extends StatefulWidget {
 class _ExplicitAnimationBState extends State<ExplicitAnimationB>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _sizeAnimation;
+  late Animation<double> _rotateAnimation;
 
   @override
   void initState() {
@@ -26,7 +26,8 @@ class _ExplicitAnimationBState extends State<ExplicitAnimationB>
       setState(() {});
     });
 
-    _sizeAnimation = Tween<double>(begin: 0, end: 2 * pi).animate(_controller);
+    _rotateAnimation =
+        Tween<double>(begin: 0, end: 2 * pi).animate(_controller);
   }
 
   @override
@@ -43,7 +44,7 @@ class _ExplicitAnimationBState extends State<ExplicitAnimationB>
                       DecorationImage(image: AssetImage("images/clock.png"))),
             ),
             RotationTransition(
-              turns: _sizeAnimation,
+              turns: _rotateAnimation,
               child: Container(
                 height: 200,
                 width: 200,

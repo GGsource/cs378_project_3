@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Project 3 - Animation Nation'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -38,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: Center(
         child: ListView(
@@ -99,24 +101,41 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget titledTile(
       {required String title, required String desc, required int ndx}) {
     String sceneTitle = ndx >= 6 ? "Explicit" : "Implicit";
-    sceneTitle = "Animation $ndx: $sceneTitle";
-    return Column(
-      children: [
-        ListTile(
-          leading: const Icon(Icons.workspaces),
-          title: Text(
-            sceneTitle,
-            style: const TextStyle(fontSize: 35),
-          ),
-          onTap: () => screenTransition(sceneTitle, title, desc, ndx),
+    sceneTitle = "Animation $ndx - $sceneTitle";
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: ndx < 6
+              ? [Colors.red, Colors.amberAccent]
+              : [Colors.amberAccent, Colors.red],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        const Divider(
-          endIndent: 40,
-          indent: 40,
-          color: Colors.black12,
-          thickness: 3,
-        )
-      ],
+      ),
+      child: Column(
+        children: [
+          const Divider(
+            endIndent: 40,
+            indent: 40,
+            color: Colors.black12,
+            thickness: 3,
+          ),
+          ListTile(
+            title: Text(
+              sceneTitle,
+              style: const TextStyle(fontSize: 35),
+              textAlign: TextAlign.center,
+            ),
+            onTap: () => screenTransition(sceneTitle, title, desc, ndx),
+          ),
+          const Divider(
+            endIndent: 40,
+            indent: 40,
+            color: Colors.black12,
+            thickness: 3,
+          )
+        ],
+      ),
     );
   }
 
